@@ -67,7 +67,6 @@ jobs:
     - name: Send coverage data to Codecov
       uses: codecov/codecov-action@v4
       with:
-        token: ${{ secrets.CODECOV_TOKEN }}
         files: >-
           .tox/.tmp/.mypy/python-3.13/cobertura.xml,
           .tox/.tmp/.mypy/python-3.11/cobertura.xml,
@@ -77,6 +76,8 @@ jobs:
           CI-GHA,
           MyPy
         fail_ci_if_error: false
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     - name: Install spell checker
       run: |
         sudo apt install libenchant-2-dev
