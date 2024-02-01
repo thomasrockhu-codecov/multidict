@@ -60,10 +60,14 @@ jobs:
     - name: Run linters
       run: |
         make lint
+
+    - name: cat .tox/.tmp/.mypy/python-3.13/cobertura.xml
+      run: cat .tox/.tmp/.mypy/python-3.13/cobertura.xml
+
     - name: Send coverage data to Codecov
       uses: codecov/codecov-action@v4
       with:
-        token: ${{ secrets.codecov-token }}
+        token: ${{ secrets.CODECOV_TOKEN }}
         files: >-
           .tox/.tmp/.mypy/python-3.13/cobertura.xml,
           .tox/.tmp/.mypy/python-3.11/cobertura.xml,
