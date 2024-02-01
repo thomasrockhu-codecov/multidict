@@ -76,8 +76,7 @@ jobs:
           CI-GHA,
           MyPy
         fail_ci_if_error: false
-      env:
-        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        token: ${{ secrets.codecov-token }}
     - name: Install spell checker
       run: |
         sudo apt install libenchant-2-dev
