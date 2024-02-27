@@ -53,14 +53,6 @@ jobs:
           }}-pre-commit-${{
             hashFiles('.pre-commit-config.yaml')
           }}
-    - name: Install dependencies
-      uses: py-actions/py-dependency-install@v4
-      with:
-        path: requirements/lint.txt
-    - name: Run linters
-      run: |
-        make lint
-
     - name: cat .tox/.tmp/.mypy/python-3.13/cobertura.xml
       run: cat .tox/.tmp/.mypy/python-3.13/cobertura.xml
     - name: Send coverage data to Codecov
@@ -77,6 +69,7 @@ jobs:
           MyPy
         fail_ci_if_error: false
         token: ${{ secrets.codecov-token }}
+        verbose: true
     - name: Install spell checker
       run: |
         sudo apt install libenchant-2-dev
