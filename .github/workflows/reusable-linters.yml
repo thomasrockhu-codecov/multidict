@@ -63,15 +63,15 @@ jobs:
 
     - name: cat .tox/.tmp/.mypy/python-3.13/cobertura.xml
       run: cat .tox/.tmp/.mypy/python-3.13/cobertura.xml
-
     - name: Send coverage data to Codecov
       uses: codecov/codecov-action@v4
       with:
         files: >-
-          ./.tox/.tmp/.mypy/python-3.13/cobertura.xml,
-          ./.tox/.tmp/.mypy/python-3.11/cobertura.xml,
-          ./.tox/.tmp/.mypy/python-3.9/cobertura.xml
-          ./.tox/.tmp/.mypy/python-3.7/cobertura.xml
+          .tox/.tmp/.mypy/python-3.13/cobertura.xml,
+          .tox/.tmp/.mypy/python-3.11/cobertura.xml,
+          .tox/.tmp/.mypy/python-3.9/cobertura.xml
+          .tox/.tmp/.mypy/python-3.7/cobertura.xml
+        directory: /
         flags: >-
           CI-GHA,
           MyPy
