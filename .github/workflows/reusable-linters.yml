@@ -53,6 +53,14 @@ jobs:
           }}-pre-commit-${{
             hashFiles('.pre-commit-config.yaml')
           }}
+    - name: Install dependencies
+      uses: py-actions/py-dependency-install@v4
+      with:
+        path: requirements/lint.txt
+    - name: Run linters
+      run: |
+        make lint
+
     - name: cat .tox/.tmp/.mypy/python-3.13/cobertura.xml
       run: cat .tox/.tmp/.mypy/python-3.13/cobertura.xml
     - name: Send coverage data to Codecov
@@ -61,9 +69,9 @@ jobs:
         files: >-
           .tox/.tmp/.mypy/python-3.13/cobertura.xml,
           .tox/.tmp/.mypy/python-3.11/cobertura.xml,
-          .tox/.tmp/.mypy/python-3.9/cobertura.xml,
+          .tox/.tmp/.mypy/python-3.9/cobertura.xml
           .tox/.tmp/.mypy/python-3.7/cobertura.xml
-        directory: /
+        directory: .tox
         flags: >-
           CI-GHA,
           MyPy
